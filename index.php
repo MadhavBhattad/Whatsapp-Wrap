@@ -3,24 +3,6 @@ session_start();
 if (!isset($_SESSION["user"])) {
    header("Location: login.php");
 }
-
-// Function to count emojis in a string
-function count_emojis($text) {
-    preg_match_all('/[\x{1F600}-\x{1F64F}]/u', $text, $matches);
-    return array_count_values($matches[0]);
-}
-
-$emojiCounts = [];
-if (isset($_FILES['chatFile'])) {
-    $file = $_FILES['chatFile']['tmp_name'];
-    $content = file_get_contents($file);
-
-    // Count emojis
-    $emojiCounts = count_emojis($content);
-}
-
-// Convert the emoji counts to JSON format
-$emojiCountsJSON = json_encode($emojiCounts);
 ?>
 
 <!DOCTYPE html>
@@ -308,67 +290,5 @@ $emojiCountsJSON = json_encode($emojiCounts);
 
     <script src="scripts/data.js"></script>
     <script src="scripts/graph_wv.js"></script>
-    <script>
-        continueFunc = () => {
-            $(document).ready(
-                function() {
-                    $(".policy, .initial").fadeToggle();
-                }
-            )
-        }
-
-        // Pie Chart for Emojis
-        $(document).ready(function() {
-            const emojiCtx = document.getElementById('emojis').getContext('2d');
-            const emojiChart = new Chart(emojiCtx, {
-                type: 'pie',
-                data: {
-                    labels: [], // Fill in with emoji labels from your data
-                    datasets: [{
-                        label: 'Emojis Used',
-                        data: [], // Fill in with emoji usage data
-                        backgroundColor: [
-                            '#FF6384',
-                            '#36A2EB',
-                            '#FFCE56',
-                            '#4BC0C0',
-                            '#9966FF',
-                            '#FF9F40',
-                            // Add more colors as needed
-                        ],
-                        hoverBackgroundColor: [
-                            '#FF6384',
-                            '#36A2EB',
-                            '#FFCE56',
-                            '#4BC0C0',
-                            '#9966FF',
-                            '#FF9F40',
-                            // Add more colors as needed
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    title: {
-                        display: true,
-                        text: 'Emoji Usage in Chat'
-                    }
-                }
-            });
-
-            // Function to update the pie chart with real data
-            function updateEmojiChart(labels, data) {
-                emojiChart.data.labels = labels;
-                emojiChart.data.datasets[0].data = data;
-                emojiChart.update();
-            }
-
-            // Example usage of updateEmojiChart function
-            // This should be replaced with actual data processing logic
-            const exampleLabels = ['😀', '😂', '😍', '😭', '😒'];
-            const exampleData = [10, 15, 5, 8, 12];
-            updateEmojiChart(exampleLabels, exampleData);
-        });
-    </script>
   </body>
 </html>
