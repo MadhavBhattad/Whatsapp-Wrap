@@ -56,7 +56,7 @@ if (!isset($_SESSION["user"])) {
   <body>
     <div style="height:95%; width:95%; margin-left: auto; margin-right: auto;">
         <div style="height:98%; width:98%;  margin-left: auto; margin-right: auto; padding-top: 10px;">
-            <button id="bttn"><a href="logout.php" class="btn btn-warning">Logout</a></button>
+            <button id="bttn" style="margin-left:1100px;margin-top:10px"><a href="logout.php" class="btn btn-warning">Logout</a></button>
             <p id="top" class="display-3" style="font-size: 60px; display:inline; margin-top: 30px;">
             <img src="./icons/WhatsApp.png" alt="icon" style="width: 8%; margin-left:250px"/>
             WhatsApp Wrap
@@ -268,26 +268,22 @@ if (!isset($_SESSION["user"])) {
                                 </div>
                             </div>
                     </div>
-
-                    <div id="fifth" class="graph" style="height: 600%; width: 87%; margin-left: auto; margin-right: auto; padding: 5%; padding-top: 2.5%; text-align: center">
-                        <h4>Emojis Used</h4>
-                        <canvas id="emojis" width="100%" height="50%; padding: 2%"></canvas> <br><br>
-
-                        <div class="row">
-                                <div class="col-lg-3">
-                                    <a href="#top" class="graph">
-                                        <button type="button" class="btn btn-success" style="background-color: #FF4040; color:white;">
-                                            Go up
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
+    <script>
+        function continueFunc() {
+            // Hide the privacy policy section
+            document.querySelector('.policy').style.display = 'none';
+
+            // Show the initial section for file upload
+            document.querySelector('.initial').style.display = 'block';
+
+            // Optionally, scroll to the top of the page
+            window.scrollTo(0, 0);
+        }
+    </script>
     <script src="scripts/data.js"></script>
     <script src="scripts/graph_wv.js"></script>
   </body>
